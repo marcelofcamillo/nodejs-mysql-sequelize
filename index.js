@@ -64,6 +64,14 @@ app.get('/users/edit/:id', async (req, res) => {
   }
 });
 
+app.post('/address/delete', async (req, res) => {
+  const { UserId, id } = req.body;
+
+  await Address.destroy({ where: { id } });
+
+  res.redirect(`/users/edit/${UserId}`);
+});
+
 app.post('/users/update', async (req, res) => {
   const { id, name, occupation } = req.body;
   let newsletter = req.body.newsletter;
