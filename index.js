@@ -12,8 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.render('home');
+app.get('/', async (req, res) => {
+  const users = await User.findAll({ raw: true });
+
+  console.log(users);
+
+  res.render('home', { users });
 });
 
 app.get('/users/create', (req, res) => {
