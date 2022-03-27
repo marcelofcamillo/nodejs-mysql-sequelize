@@ -73,9 +73,18 @@ app.post('/users/update', async (req, res) => {
   res.redirect('/');
 });
 
+app.post('/address/create', async (req, res) => {
+  const { UserId, street, number, city } = req.body;
+  const address = { UserId, street, number, city };
+
+  await Address.create(address);
+
+  res.redirect(`/users/edit/${UserId}`);
+});
+
 conn
-  .sync({ force: true })
-  //.sync()
+  //.sync({ force: true })
+  .sync()
   .then(() => {
     console.log('API started!');
     app.listen(3000);
