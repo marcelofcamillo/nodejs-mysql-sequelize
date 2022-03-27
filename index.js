@@ -2,6 +2,7 @@ import express from 'express';
 import exphbs from 'express-handlebars';
 import conn from './db/conn.js';
 import User from './models/User.js';
+import Address from './models/Address.js';
 
 const app = express();
 
@@ -73,7 +74,8 @@ app.post('/users/update', async (req, res) => {
 });
 
 conn
-  .sync()
+  .sync({ force: true })
+  //.sync()
   .then(() => {
     console.log('API started!');
     app.listen(3000);
