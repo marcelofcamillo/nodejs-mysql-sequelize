@@ -13,11 +13,11 @@ const sequelize = new Sequelize(
   }
 );
 
-try {
+/*try {
   sequelize.authenticate();
   console.log('Conectado ao MySQL!');
 } catch (error) {
   console.log('Não foi possível conectar ao MySQL!: ', error);
-}
+}*/
 
 export default sequelize;
